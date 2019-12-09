@@ -45,17 +45,17 @@ void mian(void) {
 ```c
 /*  流水循环亮起8个 LED 灯, P1 寄存器 有8个针脚,分别是 P1^0 到 P1^7 */
 #include <reg52.h>
-void delay(void){ 	/* 当成计时器来用 */
+void delay(int a){ 	/* 当成计时器来用 */
   int i,j;	
-  for(i=112; i>0 ; i--)
-    	for(j=122 ; j>0 ; j--);
+  for(i=a; i>0 ; i--)
+    	for(j=112 ; j>0 ; j--);
 }
 void main(void){
 	int i = 0;
   while(1){
 		P1 = 0xfe;		/* 这是赋值, 不是定义位置 */
     for ( i=0; i<8; i++){
-      delay();
+      delay(100);  // 100 毫秒
      /*-------*/  /* 下面这两布可以使用 P1=_crol_(P1,1); 来替换.*/
       P1 <<=1 ;		/* 这里进行循环点亮. */
       P1 |= 1;    /* 这里必不可少,否则会同时亮起多个*/
@@ -243,7 +243,7 @@ void main(void){
 
 void timer1() interrupt 3  {
   	TH1 = 0x4c;  /* 还原初始值 , 定时50ms */s
-    LT1 = 0x00;
+    TL1 = 0x00;
     i++;
 }
 ```
