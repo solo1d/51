@@ -234,7 +234,7 @@ void timer1_init(){      /* 定时器1 的初始化 */
 void main(void){
   led = 1;
   timer1_init();
-  while(1)
+  while(1)	
     	if ( i == 10){
         	led = ~led;
         	i=0 ;
@@ -242,7 +242,7 @@ void main(void){
 }
 
 void timer1() interrupt 3  {
-  	TH1 = 0x4c;  /* 还原初始值 , 定时50ms */s
+  	TH1 = 0x4c;  /* 还原初始值 , 定时50ms */
     TL1 = 0x00;
     i++;
 }
